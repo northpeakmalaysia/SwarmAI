@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/icons/icon.svg" alt="SwarmAI Logo" width="120" height="120" />
+  <img src="docs/icons/icon.png" alt="SwarmAI Logo" width="120" height="120" />
 </p>
 
 <h1 align="center">SwarmAI</h1>
