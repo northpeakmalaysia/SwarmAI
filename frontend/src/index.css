@@ -1,0 +1,480 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Font Scale CSS Variable - default to 1 (100%) */
+:root {
+  --font-scale: 1;
+}
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+    /* Apply font scale to base font size (16px default) */
+    font-size: calc(16px * var(--font-scale));
+  }
+
+  body {
+    @apply antialiased;
+  }
+
+  ::-webkit-scrollbar {
+    @apply w-2 h-2;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-swarm-darker;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-700 rounded-full hover:bg-gray-600;
+  }
+}
+
+@layer components {
+  /* ============================================
+   * UNIFIED SPACING SYSTEM
+   * Standard spacing values for consistent layouts
+   * ============================================ */
+
+  /* Page Container - Standard wrapper for all pages */
+  /* Responsive padding: p-3 on mobile, p-4 on sm, p-6 on md+ */
+  .page-container {
+    @apply p-3 sm:p-4 md:p-6 min-h-full;
+  }
+
+  /* Page Container with max-width - For settings/form pages */
+  .page-container-narrow {
+    @apply p-3 sm:p-4 md:p-6 max-w-6xl mx-auto min-h-full;
+  }
+
+  /* Page Container Full Height - For full-height layouts */
+  .page-container-full {
+    @apply p-3 sm:p-4 md:p-6 h-full flex flex-col;
+  }
+
+  /* Page Container Scrollable - For pages with long content */
+  .page-container-scroll {
+    @apply p-3 sm:p-4 md:p-6 min-h-full pb-24;
+  }
+
+  /* Page Header - Title and description section */
+  .page-header {
+    @apply mb-6;
+  }
+
+  /* Page Header with actions - Title on left, actions on right */
+  .page-header-actions {
+    @apply flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6;
+  }
+
+  /* Page Title */
+  .page-title {
+    @apply text-2xl font-bold text-white;
+  }
+
+  /* Page Subtitle */
+  .page-subtitle {
+    @apply text-gray-400 mt-1;
+  }
+
+  /* Section - Grouping content with spacing */
+  .page-section {
+    @apply mb-6;
+  }
+
+  /* Section Title */
+  .section-title {
+    @apply text-lg font-semibold text-white mb-4;
+  }
+
+  /* Grid Layouts - Consistent gap spacing */
+  .grid-standard {
+    @apply grid gap-6;
+  }
+
+  .grid-compact {
+    @apply grid gap-4;
+  }
+
+  /* Stats Grid - 2/4 column responsive */
+  .stats-grid {
+    @apply grid grid-cols-2 sm:grid-cols-4 gap-4;
+  }
+
+  /* Cards Grid - 1/2/3 column responsive */
+  .cards-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
+  }
+
+  /* Panel Header - Consistent header for sidebars/panels */
+  .panel-header {
+    @apply flex items-center justify-between px-4 py-3 border-b border-slate-700;
+  }
+
+  /* Panel Body - Content area padding */
+  .panel-body {
+    @apply p-4;
+  }
+
+  /* Card Header - For cards with separate header/body */
+  .card-header {
+    @apply px-4 pt-4 pb-2;
+  }
+
+  /* Card Body - For cards with separate header/body */
+  .card-body {
+    @apply px-4 pb-4;
+  }
+
+  /* Toolbar - Action bar with consistent padding */
+  .toolbar {
+    @apply flex items-center justify-between px-6 py-3 border-b border-slate-700;
+  }
+
+  /* Footer - Consistent footer padding */
+  .page-footer {
+    @apply px-4 py-2 border-t border-slate-700;
+  }
+
+  /* Stacked Layout - Vertical spacing between children */
+  .stack-lg {
+    @apply space-y-6;
+  }
+
+  .stack-md {
+    @apply space-y-4;
+  }
+
+  .stack-sm {
+    @apply space-y-3;
+  }
+
+  /* Inline Layout - Horizontal spacing between children */
+  .inline-lg {
+    @apply flex items-center gap-6;
+  }
+
+  .inline-md {
+    @apply flex items-center gap-4;
+  }
+
+  .inline-sm {
+    @apply flex items-center gap-3;
+  }
+
+  .inline-xs {
+    @apply flex items-center gap-2;
+  }
+
+  /* ============================================
+   * END UNIFIED SPACING SYSTEM
+   * ============================================ */
+
+  .btn-primary {
+    @apply px-4 py-2 bg-primary-600 text-white rounded-lg font-medium
+           hover:bg-primary-700 active:bg-primary-800
+           focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:ring-offset-swarm-dark
+           transition-colors duration-200
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-secondary {
+    @apply px-4 py-2 bg-gray-700 text-gray-100 rounded-lg font-medium
+           hover:bg-gray-600 active:bg-gray-500
+           focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-swarm-dark
+           transition-colors duration-200
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-ghost {
+    @apply px-4 py-2 text-gray-300 rounded-lg font-medium
+           hover:bg-gray-800 hover:text-white
+           focus:outline-none focus:ring-2 focus:ring-gray-500
+           transition-colors duration-200;
+  }
+
+  .input {
+    @apply w-full px-4 py-2 bg-swarm-dark border border-gray-700 rounded-lg
+           text-gray-100 placeholder-gray-500
+           focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent
+           transition-all duration-200;
+  }
+
+  /* Input field with dark theme - for all form inputs including selects */
+  .input-field {
+    @apply px-3 py-2 bg-slate-800 border border-slate-600 rounded-lg
+           text-gray-100 placeholder-gray-500
+           focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500
+           transition-all duration-200;
+  }
+
+  /* Select dropdown styling for dark theme */
+  select.input-field {
+    @apply cursor-pointer appearance-none bg-no-repeat;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%239ca3af' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 0.5rem center;
+    background-size: 1.5em 1.5em;
+    padding-right: 2.5rem;
+  }
+
+  /* Dark theme for select options - critical for dropdown visibility */
+  select.input-field option {
+    @apply bg-slate-800 text-gray-100;
+  }
+
+  select.input-field optgroup {
+    @apply bg-slate-700 text-gray-300 font-semibold;
+  }
+
+  select.input-field option:hover,
+  select.input-field option:focus,
+  select.input-field option:checked {
+    @apply bg-primary-600 text-white;
+  }
+
+  .card {
+    @apply bg-swarm-dark border border-gray-800 rounded-xl p-6
+           shadow-lg shadow-black/20;
+  }
+
+  .glass {
+    @apply bg-swarm-dark/80 backdrop-blur-xl border border-gray-800/50;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary-400 to-swarm-accent bg-clip-text text-transparent;
+  }
+
+  /* Gradient animation for logo and accents */
+  .gradient-animate {
+    background: linear-gradient(-45deg, #0ea5e9, #8b5cf6, #ec4899, #0ea5e9);
+    background-size: 400% 400%;
+    animation: gradient-shift 8s ease infinite;
+  }
+
+  @keyframes gradient-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* Swarm node hover effects */
+  .swarm-node {
+    @apply transition-all duration-300;
+  }
+  .swarm-node:hover {
+    transform: scale(1.1);
+    z-index: 10;
+  }
+
+  /* Connection line animation */
+  .connection-line {
+    stroke-dasharray: 5, 5;
+    animation: dash 20s linear infinite;
+  }
+  @keyframes dash {
+    to { stroke-dashoffset: -100; }
+  }
+
+  /* Flow builder node styles */
+  .flow-node {
+    @apply transition-all duration-200 cursor-grab;
+  }
+  .flow-node:active {
+    cursor: grabbing;
+  }
+  .flow-node:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px -5px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Flow connection animation */
+  .flow-connection {
+    stroke-dasharray: 6, 6;
+    animation: flow-dash-forward 0.6s linear infinite;
+  }
+  @keyframes flow-dash-forward {
+    0% { stroke-dashoffset: 12; }
+    100% { stroke-dashoffset: -12; }
+  }
+
+  /* React Flow MiniMap styles */
+  .react-flow__minimap {
+    background-color: #1e293b !important;
+    border: 1px solid #334155 !important;
+    border-radius: 8px !important;
+  }
+
+  /* React Flow Panel positioning */
+  .react-flow__panel {
+    margin: 12px !important;
+  }
+
+  /* React Flow animated edge styles */
+  .react-flow__edge.animated path,
+  .react-flow__edge.animated .react-flow__edge-path,
+  .react-flow__edge-path.animated {
+    stroke-dasharray: 5 !important;
+    animation: react-flow-edge-dash 0.5s linear infinite !important;
+  }
+
+  /* Additional selector for bezier edges */
+  .react-flow__edge.animated path.react-flow__edge-path,
+  .react-flow__edge path[class*="animated"] {
+    stroke-dasharray: 5 !important;
+    animation: react-flow-edge-dash 0.5s linear infinite !important;
+  }
+
+  @keyframes react-flow-edge-dash {
+    from {
+      stroke-dashoffset: 10;
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  /* Make edges more visible when selected */
+  .react-flow__edge.selected path,
+  .react-flow__edge.selected .react-flow__edge-path {
+    stroke: #22d3ee !important;
+    stroke-width: 3px !important;
+  }
+
+  /* Ensure edges are selectable/clickable */
+  .react-flow__edge {
+    cursor: pointer;
+  }
+
+  .react-flow__edge:hover path {
+    stroke-width: 3px;
+  }
+
+  /* React Flow drop zone indicator */
+  .react-flow__pane {
+    cursor: default;
+  }
+  .react-flow__pane.dragging {
+    cursor: copy;
+  }
+
+  /* Message bubble styles */
+  .message-incoming {
+    border-radius: 18px 18px 18px 4px;
+  }
+  .message-outgoing {
+    border-radius: 18px 18px 4px 18px;
+  }
+
+  /* Message media styles */
+  .message-media-image {
+    @apply max-w-full max-h-64 rounded-lg cursor-pointer hover:opacity-90 transition-opacity;
+  }
+  .message-media-video {
+    @apply max-w-full max-h-64 rounded-lg;
+  }
+  .message-media-document {
+    @apply flex items-center gap-3 p-3 bg-slate-700/50 rounded-lg hover:bg-slate-700 transition-colors cursor-pointer;
+  }
+  .message-media-audio {
+    @apply flex items-center gap-3 p-2 bg-slate-700/50 rounded-full;
+  }
+
+  /* Chat list item styles */
+  .chat-list-item {
+    @apply relative flex items-start gap-3 p-3 rounded-xl cursor-pointer transition-colors;
+  }
+  .chat-list-item-selected {
+    @apply bg-sky-500/20 border border-sky-500/50;
+  }
+  .chat-list-item-hover {
+    @apply hover:bg-slate-700/50 border border-transparent;
+  }
+
+  /* Group avatar style */
+  .avatar-group {
+    @apply bg-purple-500/20;
+  }
+  .avatar-private {
+    @apply bg-emerald-500/20;
+  }
+
+  .glow-sm {
+    box-shadow: 0 0 10px rgba(99, 102, 241, 0.3);
+  }
+
+  .glow-md {
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
+  }
+
+  .glow-lg {
+    box-shadow: 0 0 40px rgba(99, 102, 241, 0.5);
+  }
+
+  /* Swarm primary glow */
+  .glow-primary {
+    box-shadow: 0 0 20px rgba(14, 165, 233, 0.4);
+  }
+
+  /* Swarm secondary glow */
+  .glow-secondary {
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
+  }
+
+  /* Touch-friendly tap targets (minimum 44x44px for accessibility) */
+  .touch-target {
+    @apply min-h-[44px] min-w-[44px];
+  }
+
+  /* Hide scrollbar utility (useful for mobile horizontal scrolling) */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Safe area padding for mobile devices with notches */
+  .safe-top {
+    padding-top: env(safe-area-inset-top);
+  }
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  .safe-left {
+    padding-left: env(safe-area-inset-left);
+  }
+  .safe-right {
+    padding-right: env(safe-area-inset-right);
+  }
+  .safe-x {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+  .safe-y {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  .safe-all {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+
+  /* Mobile-optimized text selection */
+  .no-select {
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+  }
+
+  /* Prevent double-tap zoom on interactive elements */
+  .no-tap-zoom {
+    touch-action: manipulation;
+  }
+}

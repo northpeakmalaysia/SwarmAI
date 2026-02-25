@@ -1,0 +1,30 @@
+{
+  "name": "@swarmai/local-agent",
+  "version": "0.1.0",
+  "description": "SwarmAI Local Agent CLI - Connect your device to SwarmAI",
+  "main": "index.js",
+  "bin": {
+    "swarmai-agent": "./index.js"
+  },
+  "scripts": {
+    "start": "node index.js start",
+    "login": "node index.js login"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.26.0",
+    "chalk": "^4.1.2",
+    "commander": "^11.1.0",
+    "open": "^8.4.2",
+    "screenshot-desktop": "^1.5.3",
+    "socket.io-client": "^4.7.4"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "keywords": [
+    "swarmai",
+    "local-agent",
+    "cli"
+  ],
+  "license": "MIT"
+}

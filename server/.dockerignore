@@ -1,0 +1,25 @@
+# Dependencies
+node_modules/
+
+# Data directories (mounted as volumes)
+data/
+logs/
+
+# Environment files (use Docker env vars)
+.env
+.env.local
+
+# IDE
+.vscode/
+.idea/
+
+# Git
+.git/
+.gitignore
+
+# Backups
+Backup/
+
+# Temporary files
+*.log
+*.tmp

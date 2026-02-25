@@ -1,0 +1,125 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Build outputs
+dist/
+build/
+.next/
+out/
+frontend/dist/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Database files
+*.db
+*.db-journal
+*.db-wal
+*.sqlite
+*.sqlite3
+
+# Runtime data
+server/data/
+data/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+mcp-server.log
+
+# Editor directories
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+NUL
+
+# Testing
+coverage/
+.nyc_output/
+
+# Turbo
+.turbo/
+
+# Misc
+*.pem
+.cache/
+
+# Uploaded files
+uploads/
+server/data/uploads/
+server/data/media/
+
+# Qdrant snapshots
+qdrant_snapshots/
+qdrant_data/
+
+# Redis data
+redis_data/
+
+# WhatsApp sessions (contain auth tokens)
+whatsapp-sessions/
+server/data/whatsapp-sessions/
+.wwebjs_auth*/
+.wwebjs_cache/
+
+# Backup folder (large versioned files)
+Backup/
+
+# Legacy backend (deprecated)
+Backup/backend/
+
+# Internal docs (contain credentials and internal plans)
+docs/
+
+# Claude/AI tool files
+.claude/
+.roo/
+.playwright-mcp/
+
+# CLI credentials
+cli_credentials/
+
+# AI tool notes (not project docs)
+roocode.txt
+
+# Docker volumes
+docker/volumes/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.Python
+env/
+venv/
+.venv/
+
+# Certificates
+*.cert
+*.key
+*.crt
+*.csr
+
+# Mobile build artifacts
+*.apk
+*.aab
+*.ipa
+.gradle/
+mobile_application/android/.gradle/
+mobile_application/android/app/build/
+mobile_application/android/build/

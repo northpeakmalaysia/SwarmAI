@@ -1,0 +1,48 @@
+{
+  "name": "swarm-mobile-agent",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "android": "react-native run-android",
+    "start": "react-native start",
+    "test": "jest",
+    "lint": "eslint .",
+    "clean": "cd android && ./gradlew clean"
+  },
+  "dependencies": {
+    "@react-native-async-storage/async-storage": "^2.1.0",
+    "@react-native-community/netinfo": "^11.4.1",
+    "@react-navigation/native": "^6.1.18",
+    "@react-navigation/native-stack": "^6.11.0",
+    "react": "18.3.1",
+    "react-native": "0.76.9",
+    "react-native-android-sms-listener": "^0.5.0",
+    "react-native-background-actions": "^4.0.1",
+    "react-native-device-info": "^13.2.0",
+    "react-native-geolocation-service": "^5.3.1",
+    "react-native-get-sms-android": "^2.1.0",
+    "react-native-keychain": "^9.2.2",
+    "react-native-notification-listener": "^5.0.2",
+    "react-native-safe-area-context": "^4.14.0",
+    "react-native-screens": "^3.35.0",
+    "@notifee/react-native": "^9.1.2",
+    "socket.io-client": "^4.7.5"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.25.0",
+    "@babel/preset-env": "^7.25.0",
+    "@babel/runtime": "^7.25.0",
+    "@react-native-community/cli": "^20.1.2",
+    "@react-native-community/cli-platform-android": "^20.1.2",
+    "@react-native/babel-preset": "^0.76.0",
+    "@react-native/metro-config": "^0.76.0",
+    "@react-native/typescript-config": "^0.76.0",
+    "@types/react": "^18.3.0",
+    "eslint": "^9.0.0",
+    "jest": "^29.7.0",
+    "typescript": "^5.6.0"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}

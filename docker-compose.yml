@@ -1,0 +1,191 @@
+# =============================================================================
+# SwarmAI Docker Compose - All-in-One
+# =============================================================================
+# Full stack with all services for local development and production
+#
+# Ports:
+#   - Frontend: 3202
+#   - Backend API: 3210
+#   - Backend WebSocket: 3211
+#   - Redis: 6380 (localhost only)
+#   - Qdrant: 6333-6334 (localhost only)
+#
+# Usage:
+#   docker compose up -d --build
+#
+# Production via Nginx Proxy:
+#   - / → 192.168.50.117:3202
+#   - /api/ → 192.168.50.117:3210
+#   - /socket.io → 192.168.50.117:3211
+# =============================================================================
+
+services:
+  # ---------------------------------------------------------------------------
+  # Backend API & WebSocket Server (CommonJS Server)
+  # ---------------------------------------------------------------------------
+  backend:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: swarm-backend
+    restart: unless-stopped
+    shm_size: '2gb'  # Required for Puppeteer/Chrome to launch properly
+    environment:
+      # V8 memory limit (optimization flags passed via command line)
+      - NODE_OPTIONS=--max-old-space-size=4096
+      - NODE_ENV=${NODE_ENV:-development}
+      - API_PORT=3210
+      - WS_PORT=3211
+      - REDIS_URL=redis://redis:6379
+      - QDRANT_URL=http://qdrant:6333
+      - DOCKER_CONTAINER=true
+      - JWT_SECRET=${JWT_SECRET:-your-super-secret-jwt-key-change-in-production}
+      - JWT_EXPIRES_IN=${JWT_EXPIRES_IN:-90d}
+      # Frontend URL for magic link emails
+      - FRONTEND_URL=${FRONTEND_URL:-https://agents.northpeak.app}
+      # CORS origins
+      - CORS_ORIGINS=${CORS_ORIGINS:-http://localhost:3202,https://agents.northpeak.app}
+      # Email/SMTP Configuration (AWS SES)
+      - SMTP_HOST=${SMTP_HOST}
+      - SMTP_PORT=${SMTP_PORT}
+      - SMTP_SECURE=${SMTP_SECURE}
+      - SMTP_USER=${SMTP_USER}
+      - SMTP_PASS=${SMTP_PASS}
+      - EMAIL_FROM=${EMAIL_FROM}
+      # Encryption key for platform credentials
+      - ENCRYPTION_KEY=${ENCRYPTION_KEY}
+      # Telegram User (MTProto) credentials
+      - TELEGRAM_API_ID=${TELEGRAM_API_ID}
+      - TELEGRAM_API_HASH=${TELEGRAM_API_HASH}
+      # Puppeteer Chrome path
+      - PUPPETEER_EXECUTABLE_PATH=/opt/puppeteer-cache/chrome/linux-136.0.7103.92/chrome-linux64/chrome
+      # Test bypass token for debugging (allows API access without JWT)
+      - ENABLE_TEST_BYPASS=${ENABLE_TEST_BYPASS:-false}
+      - TEST_BYPASS_TOKEN=${TEST_BYPASS_TOKEN:-swarm-test-bypass-2026}
+      # CLI tools home directory (for credential persistence)
+      - CLI_HOME=/home/cliuser
+      # AI Services - OpenRouter API key for AI provider access
+      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY}
+      # CLI API Keys (alternative to OAuth login - more reliable for Docker)
+      # Set these in .env file to avoid re-authenticating after rebuilds
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
+      - GOOGLE_API_KEY=${GOOGLE_API_KEY:-}
+      - GEMINI_API_KEY=${GEMINI_API_KEY:-}
+      # Ollama URL - points to host machine (use host.docker.internal on Mac/Windows)
+      - OLLAMA_URL=${OLLAMA_URL:-http://host.docker.internal:11434}
+    volumes:
+      - server_data:/app/data
+      # CLI credentials: Persist Claude/Gemini/OpenCode auth across rebuilds
+      - cli_credentials:/home/cliuser
+    ports:
+      - "3210:3210"
+      - "3211:3211"
+    extra_hosts:
+      # Allow container to access host machine services (Ollama)
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      redis:
+        condition: service_healthy
+      qdrant:
+        condition: service_healthy
+    networks:
+      - swarm-network
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:3210/api/health', (r) => process.exit(r.statusCode === 200 ? 0 : 1))"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s
+
+  # ---------------------------------------------------------------------------
+  # Frontend (Nginx serving static files)
+  # ---------------------------------------------------------------------------
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        # Production URLs for agents.northpeak.app
+        - VITE_API_URL=${VITE_API_URL:-https://agents.northpeak.app}
+        - VITE_WS_URL=${VITE_WS_URL:-wss://agents.northpeak.app}
+        - VITE_APP_TITLE=SwarmAI
+    container_name: swarm-frontend
+    restart: unless-stopped
+    ports:
+      - "3202:80"
+    networks:
+      - swarm-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:80/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # ---------------------------------------------------------------------------
+  # Redis (Session & Cache)
+  # ---------------------------------------------------------------------------
+  redis:
+    image: redis:7-alpine
+    container_name: swarm-redis
+    restart: unless-stopped
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_data:/data
+    ports:
+      - "127.0.0.1:6380:6379"
+    networks:
+      - swarm-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ---------------------------------------------------------------------------
+  # Qdrant (Vector Database)
+  # ---------------------------------------------------------------------------
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: swarm-qdrant
+    restart: unless-stopped
+    volumes:
+      - qdrant_data:/qdrant/storage
+    ports:
+      - "127.0.0.1:6333:6333"
+      - "127.0.0.1:6334:6334"
+    environment:
+      - QDRANT__SERVICE__GRPC_PORT=6334
+    networks:
+      - swarm-network
+    healthcheck:
+      test: ["CMD-SHELL", "timeout 5 bash -c '</dev/tcp/localhost/6333' || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+
+# =============================================================================
+# Volumes - Persist all data across container restarts/rebuilds
+# =============================================================================
+volumes:
+  # Server data: SQLite DB, WhatsApp/Email sessions, uploads
+  # Sessions persist so users don't need to re-authenticate after rebuild
+  server_data:
+    driver: local
+  # CLI credentials: Claude/Gemini/OpenCode auth tokens persist across rebuilds
+  # Contains: ~/.claude/, ~/.gemini/, ~/.opencode/, ~/.config/
+  cli_credentials:
+    driver: local
+  # Redis: Session cache, rate limiting data
+  redis_data:
+    driver: local
+  # Qdrant: Vector embeddings for RAG
+  qdrant_data:
+    driver: local
+
+# =============================================================================
+# Networks
+# =============================================================================
+networks:
+  swarm-network:
+    driver: bridge
