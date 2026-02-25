@@ -84,7 +84,7 @@ Backup/
 Backup/backend/
 
 # Internal docs (contain credentials and internal plans)
-docs/
+CLAUDE.md
 
 # Claude/AI tool files
 .claude/

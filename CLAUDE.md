@@ -353,6 +353,43 @@ Request → SuperBrainRouter.process()
 - Backup `.db` files before ALTER TABLE
 - Test migrations on dev first
 
+## GitHub Repository Security
+
+**Repository:** `northpeakmalaysia/SwarmAI`
+
+### Branch Protection Rules (main)
+
+Configure at: `https://github.com/northpeakmalaysia/SwarmAI/settings/branches`
+
+**Required protections on `main`:**
+- Require pull request before merging (min 1 approval)
+- Dismiss stale pull request approvals on new commits
+- Block force pushes
+- Block branch deletions
+- Include administrators (apply rules to owners/admins too)
+
+**Workflow:** All changes to `main` must go through a PR. No direct pushes.
+
+### Push Protection & Secret Scanning
+
+GitHub Push Protection is enabled — pushes containing detected secrets (API keys, tokens, passwords) are automatically blocked.
+
+**Rules:**
+1. **NEVER commit credentials files** — `docs/credentials-export.md` and similar files must stay gitignored
+2. **`.gitignore` already excludes:** `docs/`, `.env`, `.env.local`, `.env.*.local`, `*.pem`, `*.cert`, `*.key`
+3. **If push is blocked by secret scanning:**
+   - Do NOT use the "allow secret" bypass URL
+   - Remove the secret from the commit using `git rebase` or `git filter-branch`
+   - Rotate the exposed credential immediately
+4. **Store secrets in:** `.env` files (gitignored), Docker secrets, or environment variables — never in tracked files
+
+### Git Workflow
+
+- **Main branch:** `main` (protected)
+- **Feature branches:** `feature/{name}` or `{name}` → PR to `main`
+- **Push command:** `git push -u origin main` (NOT `master`)
+- **Before pushing:** Always verify no secrets are tracked with `git ls-files | grep -i -E "(credential|secret|password|\.env$)"`
+
 ## Docker Deployment
 
 **Production URL:** `https://agents.northpeak.app`
