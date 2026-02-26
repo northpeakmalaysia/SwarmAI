@@ -44,7 +44,7 @@ services:
       # Frontend URL for magic link emails
       - FRONTEND_URL=${FRONTEND_URL:-https://agents.northpeak.app}
       # CORS origins
-      - CORS_ORIGINS=${CORS_ORIGINS:-http://localhost:3202,https://agents.northpeak.app}
+      - CORS_ORIGINS=${CORS_ORIGINS:-http://localhost:3202,https://swarmai.northpeak.app}
       # Email/SMTP Configuration (AWS SES)
       - SMTP_HOST=${SMTP_HOST}
       - SMTP_PORT=${SMTP_PORT}
@@ -106,8 +106,8 @@ services:
       dockerfile: Dockerfile
       args:
         # Production URLs for agents.northpeak.app
-        - VITE_API_URL=${VITE_API_URL:-https://agents.northpeak.app}
-        - VITE_WS_URL=${VITE_WS_URL:-wss://agents.northpeak.app}
+        - VITE_API_URL=${VITE_API_URL:-https://swarmai.northpeak.app}
+        - VITE_WS_URL=${VITE_WS_URL:-wss://swarmai.northpeak.app}
         - VITE_APP_TITLE=SwarmAI
     container_name: swarm-frontend
     restart: unless-stopped
