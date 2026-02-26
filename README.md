@@ -236,15 +236,6 @@ curl -H "Authorization: Bearer swarm-test-bypass-2026" \
 - Agentic events (10) &mdash; Task updates, skill learning
 - Terminal events (10) &mdash; CLI session management
 
-## Subscription Tiers
-
-| Tier | Agents | Flows | AI Tokens/mo | Price |
-|------|--------|-------|-------------|-------|
-| **Free** | 1 | 3 | 50K | $0 |
-| **Starter** | 3 | 10 | 500K | $9.99/mo |
-| **Pro** | 10 | 50 | 2.5M | $29.99/mo |
-| **Enterprise** | 100 | 500 | 10M | $99.99/mo |
-
 ## Project Structure
 
 ```
