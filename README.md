@@ -1,4 +1,4 @@
-<img src="bee.png" align="right" width="140" alt="SwarmAI" />
+<img src="bee.png" align="center" width="140" alt="SwarmAI" />
 
 # SwarmAI
 
