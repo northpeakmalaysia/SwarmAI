@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en" data-theme="midnight-forge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark light" />
+    <!-- QA-2026-05-09 #6 — bee favicon set. Source `bee.png` (1024px,
+         repo root) is the design master; the rendered icons live in
+         `public/` and are generated via the resize step in
+         scripts/build-favicons.mjs (see DEPLOY.md). The 32 px primary
+         keeps tab-icon download under 2 kB. -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/bee-32.png" />
+    <link rel="icon" type="image/png" sizes="64x64" href="/bee-64.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/bee-180.png" />
+    <title>SwarmAI Console</title>
+    <script type="module" crossorigin src="/assets/index-LxLpkLv_.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-B9qRjiTt.css">
+  </head>
+  <body class="bg-bg-base text-fg-primary antialiased">
+    <div id="root"></div>
+    <!-- Runtime config — populated by `swarmai ui` so the dashboard knows
+         which agent server to talk to without per-port rebuilds. Falls
+         back gracefully when missing (Tauri / Vite dev / static export). -->
+    <script src="/runtime-config.js"></script>
+  </body>
+</html>

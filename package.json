@@ -1,7 +1,7 @@
 {
-  "name": "swarmai",
-  "version": "0.0.1",
-  "description": "SwarmAI — CEO Agent (proprietary distribution).",
+  "name": "@northpeak/swarmai",
+  "version": "0.0.3",
+  "description": "SwarmAI — your personal multi-channel AI assistant.",
   "type": "module",
   "bin": {
     "swarmai": "./swarmai.js"
@@ -10,7 +10,11 @@
   "files": [
     "swarmai.js",
     "server.js",
-    "README.md"
+    "plugins/",
+    "dashboard/",
+    "bee.png",
+    "README.md",
+    "LICENSE"
   ],
   "engines": {
     "node": ">=22.0.0"
@@ -35,6 +39,8 @@
     "pdf-parse": "^1.1.1",
     "picocolors": "^1.1.1",
     "pino": "^9.5.0",
+    "pino-pretty": "^13.0.0",
+    "playwright": "^1.59.1",
     "qrcode-terminal": "^0.12.0",
     "sharp": "^0.33.5",
     "telegram": "^2.26.22",
@@ -43,6 +49,8 @@
     "zod": "^3.23.8",
     "zod-to-json-schema": "^3.24.1"
   },
-  "license": "SEE LICENSE IN LICENSE",
-  "private": true
+  "license": "PolyForm-Noncommercial-1.0.0",
+  "publishConfig": {
+    "access": "public"
+  }
 }
