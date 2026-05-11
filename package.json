@@ -1,12 +1,12 @@
 {
   "name": "@northpeak/swarmai",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "description": "SwarmAI — your personal multi-channel AI assistant.",
   "type": "module",
   "bin": {
-    "swarmai": "./swarmai.js"
+    "swarmai": "swarmai.js"
   },
-  "main": "./swarmai.js",
+  "main": "swarmai.js",
   "files": [
     "swarmai.js",
     "server.js",
