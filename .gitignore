@@ -1,31 +1,6 @@
-# Dependencies (installed via `npm install`)
-node_modules/
-
-# Local backups (per-machine, not for distribution)
-Backup/
-
-# Logs
-*.log
-npm-debug.log*
-
-# Environment / secrets
-.env
-.env.*
-!.env.example
-npm.env
+﻿node_modules/
+*.env
 .npmrc
-
-# Editor / OS
+Backup/
+*.log
 .DS_Store
-Thumbs.db
-.idea/
-.vscode/
-*.swp
-
-# Local databases / runtime state
-*.sqlite
-*.sqlite3
-*.db
-data/
-storage/
-sessions/
