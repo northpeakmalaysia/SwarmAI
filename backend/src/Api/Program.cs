@@ -1,9 +1,13 @@
+using System.Text;
 using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Microsoft.IdentityModel.Tokens;
 using FieldPulse.Api;
 using FieldPulse.Api.Modules;
 using FieldPulse.Api.Middleware;
 using FieldPulse.Infrastructure;
+using FieldPulse.Shared.Options;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -40,6 +44,26 @@ builder.Services.AddCors(options =>
     });
 });
 
+// JWT Authentication
+var jwtOptions = builder.Configuration.GetSection(JwtOptions.SectionName).Get<JwtOptions>();
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = jwtOptions?.Issuer,
+            ValidAudience = jwtOptions?.Audience,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtOptions?.Secret ?? "fallback-secret-key-must-be-at-least-32-characters!")),
+            ClockSkew = TimeSpan.Zero
+        };
+    });
+
+builder.Services.AddAuthorization();
+
 // Infrastructure (EF, Redis, Identity, Email, SignalR)
 builder.Services.AddInfrastructureServices(builder.Configuration);
 
@@ -60,6 +84,7 @@ if (app.Environment.IsDevelopment())
 app.UseSerilogRequestLogging();
 app.UseHttpsRedirection();
 app.UseCors("AllowFrontend");
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.UseMiddleware<RequestTimingMiddleware>();
@@ -67,6 +92,9 @@ app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.MapControllers();
 app.MapInvoiceRoutes();
+app.MapCustomerRoutes();
+app.MapTechnicianRoutes();
+app.MapJobRoutes();
 app.MapHealthChecks("/health", new HealthCheckOptions
 {
     ResponseWriter = HealthCheckResponseWriter.WriteResponse

@@ -14,6 +14,9 @@ public class ApplicationDbContext : DbContext
     public DbSet<AuditLog> AuditLogs { get; set; } = null!;
 
     public DbSet<Invoice> Invoices { get; set; } = null!;
+    public DbSet<Customer> Customers { get; set; } = null!;
+    public DbSet<Technician> Technicians { get; set; } = null!;
+    public DbSet<Job> Jobs { get; set; } = null!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -23,5 +26,8 @@ public class ApplicationDbContext : DbContext
         modelBuilder.ApplyConfiguration(new PermissionConfiguration());
         modelBuilder.ApplyConfiguration(new AuditLogConfiguration());
         modelBuilder.ApplyConfiguration(new InvoiceConfiguration());
+        modelBuilder.ApplyConfiguration(new CustomerConfiguration());
+        modelBuilder.ApplyConfiguration(new TechnicianConfiguration());
+        modelBuilder.ApplyConfiguration(new JobConfiguration());
     }
 }

@@ -19,6 +19,5 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
         builder.Property(u => u.Status).HasConversion<string>().HasMaxLength(50);
         builder.HasMany(u => u.Roles).WithMany(r => r.Users)
             .UsingEntity(j => j.ToTable("UserRoles"));
-        builder.HasIndex(u => u.Email.Value).IsUnique();
     }
 }
