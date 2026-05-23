@@ -1,8 +1,11 @@
 import { NavLink } from 'react-router-dom'
-import { FileText, LayoutDashboard, Settings, Users } from 'lucide-react'
+import { FileText, LayoutDashboard, Settings, Users, UserCircle, Wrench, ClipboardList } from 'lucide-react'
 
 const navItems = [
   { to: '/', label: 'Dashboard', icon: LayoutDashboard },
+  { to: '/customers', label: 'Customers', icon: UserCircle },
+  { to: '/technicians', label: 'Technicians', icon: Wrench },
+  { to: '/jobs', label: 'Jobs', icon: ClipboardList },
   { to: '/invoices', label: 'Invoices', icon: FileText },
   { to: '/users', label: 'Users', icon: Users },
   { to: '/settings', label: 'Settings', icon: Settings },

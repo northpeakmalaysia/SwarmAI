@@ -44,3 +44,118 @@ export interface UpdateInvoiceRequest {
   dueDate: string;
   paidAt?: string;
 }
+
+export type JobStatus = 'Pending' | 'Scheduled' | 'InProgress' | 'Completed' | 'Cancelled';
+
+export interface Customer {
+  id: string;
+  name: string;
+  email?: string;
+  phone?: string;
+  address?: string;
+  city?: string;
+  postalCode?: string;
+  notes?: string;
+  isActive: boolean;
+  createdAt: string;
+  updatedAt?: string;
+}
+
+export interface CreateCustomerRequest {
+  name: string;
+  email?: string;
+  phone?: string;
+  address?: string;
+  city?: string;
+  postalCode?: string;
+  notes?: string;
+  isActive: boolean;
+}
+
+export interface UpdateCustomerRequest {
+  name: string;
+  email?: string;
+  phone?: string;
+  address?: string;
+  city?: string;
+  postalCode?: string;
+  notes?: string;
+  isActive: boolean;
+}
+
+export interface Technician {
+  id: string;
+  firstName: string;
+  lastName: string;
+  email?: string;
+  phone?: string;
+  status: 'Active' | 'OnLeave' | 'Inactive';
+  specialization?: string;
+  createdAt: string;
+  updatedAt?: string;
+}
+
+export interface CreateTechnicianRequest {
+  firstName: string;
+  lastName: string;
+  email?: string;
+  phone?: string;
+  status: 'Active' | 'OnLeave' | 'Inactive';
+  specialization?: string;
+}
+
+export interface UpdateTechnicianRequest {
+  firstName: string;
+  lastName: string;
+  email?: string;
+  phone?: string;
+  status: 'Active' | 'OnLeave' | 'Inactive';
+  specialization?: string;
+}
+
+export interface Job {
+  id: string;
+  title: string;
+  description?: string;
+  status: JobStatus;
+  scheduledDate: string;
+  startedAt?: string;
+  completedAt?: string;
+  estimatedCost?: number;
+  actualCost?: number;
+  notes?: string;
+  customerId: string;
+  customerName: string;
+  technicianId?: string;
+  technicianName?: string;
+  createdAt: string;
+  updatedAt?: string;
+}
+
+export interface CreateJobRequest {
+  title: string;
+  description?: string;
+  scheduledDate: string;
+  estimatedCost?: number;
+  notes?: string;
+  customerId: string;
+  customerName: string;
+  technicianId?: string;
+  technicianName?: string;
+}
+
+export interface UpdateJobRequest {
+  title: string;
+  description?: string;
+  status: JobStatus;
+  scheduledDate: string;
+  startedAt?: string;
+  completedAt?: string;
+  estimatedCost?: number;
+  actualCost?: number;
+  notes?: string;
+  customerId: string;
+  customerName: string;
+  technicianId?: string;
+  technicianName?: string;
+}

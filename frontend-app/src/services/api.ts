@@ -1,4 +1,17 @@
-import type { Invoice, CreateInvoiceRequest, UpdateInvoiceRequest } from '../types'
+import type {
+  Invoice,
+  CreateInvoiceRequest,
+  UpdateInvoiceRequest,
+  Customer,
+  Technician,
+  Job,
+  CreateCustomerRequest,
+  UpdateCustomerRequest,
+  CreateTechnicianRequest,
+  UpdateTechnicianRequest,
+  CreateJobRequest,
+  UpdateJobRequest,
+} from '../types'
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000/api'
 
@@ -36,4 +49,67 @@ export async function updateInvoice(id: string, data: UpdateInvoiceRequest): Pro
 
 export async function deleteInvoice(id: string): Promise<void> {
   return fetchApi<void>(`/invoices/${id}`, { method: 'DELETE' })
+}
+
+// Customers
+export async function getCustomers(): Promise<Customer[]> {
+  return fetchApi<Customer[]>('/customers')
+}
+
+export async function getCustomer(id: string): Promise<Customer> {
+  return fetchApi<Customer>(`/customers/${id}`)
+}
+
+export async function createCustomer(data: { name: string; email?: string; phone?: string; address?: string; city?: string; postalCode?: string; notes?: string; isActive: boolean }): Promise<Customer> {
+  return fetchApi<Customer>('/customers', { method: 'POST', body: JSON.stringify(data) })
+}
+
+export async function updateCustomer(id: string, data: UpdateCustomerRequest): Promise<void> {
+  return fetchApi<void>(`/customers/${id}`, { method: 'PUT', body: JSON.stringify(data) })
+}
+
+export async function deleteCustomer(id: string): Promise<void> {
+  return fetchApi<void>(`/customers/${id}`, { method: 'DELETE' })
+}
+
+// Technicians
+export async function getTechnicians(): Promise<Technician[]> {
+  return fetchApi<Technician[]>('/technicians')
+}
+
+export async function getTechnician(id: string): Promise<Technician> {
+  return fetchApi<Technician>(`/technicians/${id}`)
+}
+
+export async function createTechnician(data: CreateTechnicianRequest): Promise<Technician> {
+  return fetchApi<Technician>('/technicians', { method: 'POST', body: JSON.stringify(data) })
+}
+
+export async function updateTechnician(id: string, data: UpdateTechnicianRequest): Promise<void> {
+  return fetchApi<void>(`/technicians/${id}`, { method: 'PUT', body: JSON.stringify(data) })
+}
+
+export async function deleteTechnician(id: string): Promise<void> {
+  return fetchApi<void>(`/technicians/${id}`, { method: 'DELETE' })
+}
+
+// Jobs
+export async function getJobs(): Promise<Job[]> {
+  return fetchApi<Job[]>('/jobs')
+}
+
+export async function getJob(id: string): Promise<Job> {
+  return fetchApi<Job>(`/jobs/${id}`)
+}
+
+export async function createJob(data: CreateJobRequest): Promise<Job> {
+  return fetchApi<Job>('/jobs', { method: 'POST', body: JSON.stringify(data) })
+}
+
+export async function updateJob(id: string, data: UpdateJobRequest): Promise<void> {
+  return fetchApi<void>(`/jobs/${id}`, { method: 'PUT', body: JSON.stringify(data) })
+}
+
+export async function deleteJob(id: string): Promise<void> {
+  return fetchApi<void>(`/jobs/${id}`, { method: 'DELETE' })
 }
