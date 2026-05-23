@@ -14,3 +14,6 @@ nul
 dashboard/assets/*.js
 dashboard/assets/*.js.map
 dashboard/assets/*.css
+
+# Tests (kept local, not published to GitHub)
+tests/
