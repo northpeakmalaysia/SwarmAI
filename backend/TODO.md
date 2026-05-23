@@ -1,47 +1,21 @@
-# Backend .NET Clean Architecture — TODO
+# FieldPulse Backend — xUnit Test Project Setup
 
-## Overview
-Recreate the entire .NET Clean Architecture backend solution under `backend/` after a previous fabricated report.
+## Plan
+- [ ] Create `tests/FieldPulse.Core.Tests` xUnit project (net10.0)
+- [ ] Create `tests/FieldPulse.Api.Tests` xUnit project (net10.0)
+- [ ] Add required NuGet packages to both projects
+- [ ] Add project references (Core.Tests → Core; Api.Tests → Api, Core)
+- [ ] Create Core.Tests domain logic tests:
+  - [ ] `Entities/InvoiceTests.cs` — defaults, status, amount
+  - [ ] `Entities/JobTests.cs` — defaults, CustomerId
+  - [ ] `Entities/CustomerTests.cs` — IsActive, Name required
+  - [ ] `ValueObjects/EmailAddressTests.cs` — valid/invalid parsing
+- [ ] Create Api.Tests integration tests:
+  - [ ] `Controllers/HealthControllerTests.cs` — GET /api/health → 200
+  - [ ] `Modules/InvoiceModuleTests.cs` — GET list, POST create, GET 404
+- [ ] Wire both test projects into `FieldPulse.slnx` under `/tests/` folder
+- [ ] Build solution with 0 errors
+- [ ] Run `dotnet test` and report results
 
-## Projects
-- `FieldPulse.Core` — Domain entities, interfaces, DTOs, enums, exceptions
-- `FieldPulse.Infrastructure` — EF Core, Redis, SignalR, Email, Identity, Repositories
-- `FieldPulse.Api` — ASP.NET Core host, controllers, middleware, health checks, Serilog
-- `FieldPulse.Workers` — Hangfire background job host
-- `FieldPulse.Shared` — Common utilities, strongly-typed options, shared constants
-
-## Task Checklist
-
-- [ ] 1. Scaffold solution and 5 projects with correct folder structure
-- [ ] 2. Configure project references enforcing Clean Architecture boundaries
-- [ ] 3. Write four Architecture Decision Records (ADRs) in `docs/adr/`
-- [ ] 4. Implement Core domain layer (entities, interfaces, DTOs)
-- [ ] 5. Implement Infrastructure layer (EF Core, Redis, SignalR, Email stubs)
-- [ ] 6. Implement Api host (Program.cs, middleware, health checks, Serilog)
-- [ ] 7. Implement Workers project (Hangfire host) and Shared options
-- [ ] 8. Write global appsettings.json with strongly-typed options classes
-- [ ] 9. Verify every file exists on disk before reporting completion
-
-## Clean Architecture Rules
-- Core has ZERO external dependencies (no NuGet packages except maybe MediatR contracts or similar abstractions).
-- Infrastructure references Core only.
-- Api references Core and Infrastructure.
-- Workers references Core, Infrastructure, and Shared.
-- Shared is referenced by Infrastructure, Api, and Workers (no reference to Core to avoid circularity; Shared contains pure cross-cutting utilities).
-
-## ADRs Required
-1. ADR-001: Use Clean Architecture with vertical slices
-2. ADR-002: Use Entity Framework Core with PostgreSQL
-3. ADR-003: Use Hangfire for background job processing
-4. ADR-004: Use Redis for distributed caching and SignalR backplane
-
-## Tech Stack
-- .NET 8
-- EF Core (Npgsql)
-- Redis (StackExchange.Redis)
-- SignalR
-- Hangfire
-- Serilog
-- FluentValidation
-- MediatR (optional, but good for Clean Architecture)
-- xUnit (test stubs)
+## Status
+In Progress — executing via Claude Code CLI

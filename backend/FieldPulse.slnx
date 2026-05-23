@@ -14,5 +14,4 @@
   </Folder>
   <Folder Name="/src/Workers/">
     <Project Path="src/Workers/FieldPulse.Workers.csproj" />
-  </Folder>
-</Solution>
+  </Folder>\r\n  <Folder Name="/tests/">\r\n    <Project Path="tests/FieldPulse.Core.Tests/FieldPulse.Core.Tests.csproj" />\r\n  </Folder>\r\n</Solution>
