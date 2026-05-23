@@ -4,20 +4,20 @@ using Xunit;
 
 namespace FieldPulse.Api.Tests.Controllers;
 
-public class HealthControllerTests : IntegrationTestBase
+public class HealthControllerTests : IClassFixture<CustomWebApplicationFactory>
 {
-    public HealthControllerTests(CustomWebApplicationFactory factory) : base(factory) { }
+    private readonly HttpClient _client;
+
+    public HealthControllerTests(CustomWebApplicationFactory factory)
+    {
+        _client = factory.CreateClient();
+    }
 
     [Fact]
     public async Task Get_Status_ShouldReturnOk()
     {
-        // Arrange
-        var request = "/api/health";
+        var response = await _client.GetAsync("/api/health");
 
-        // Act
-        var response = await _client.GetAsync(request);
-
-        // Assert
         response.StatusCode.Should().Be(HttpStatusCode.OK);
     }
 }
