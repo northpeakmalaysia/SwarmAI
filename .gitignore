@@ -1,6 +1,16 @@
-﻿node_modules/
+node_modules/
 *.env
 .npmrc
 Backup/
 *.log
 .DS_Store
+
+# SwarmAI runtime
+.swarmai/
+nul
+-p
+
+# Dashboard build artifacts (generated)
+dashboard/assets/*.js
+dashboard/assets/*.js.map
+dashboard/assets/*.css
