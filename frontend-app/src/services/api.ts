@@ -11,14 +11,22 @@ import type {
   UpdateTechnicianRequest,
   CreateJobRequest,
   UpdateJobRequest,
+  DashboardMetricsDto,
 } from '../types'
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000/api'
+
+let authToken: string | null = null
+
+export function setAuthToken(token: string | null) {
+  authToken = token
+}
 
 export async function fetchApi<T>(endpoint: string, options?: RequestInit): Promise<T> {
   const response = await fetch(`${API_BASE_URL}${endpoint}`, {
     headers: {
       'Content-Type': 'application/json',
+      ...(authToken ? { 'Authorization': `Bearer ${authToken}` } : {}),
       ...options?.headers,
     },
     ...options,
@@ -60,7 +68,7 @@ export async function getCustomer(id: string): Promise<Customer> {
   return fetchApi<Customer>(`/customers/${id}`)
 }
 
-export async function createCustomer(data: { name: string; email?: string; phone?: string; address?: string; city?: string; postalCode?: string; notes?: string; isActive: boolean }): Promise<Customer> {
+export async function createCustomer(data: CreateCustomerRequest): Promise<Customer> {
   return fetchApi<Customer>('/customers', { method: 'POST', body: JSON.stringify(data) })
 }
 
@@ -112,4 +120,8 @@ export async function updateJob(id: string, data: UpdateJobRequest): Promise<voi
 
 export async function deleteJob(id: string): Promise<void> {
   return fetchApi<void>(`/jobs/${id}`, { method: 'DELETE' })
+}
+
+export async function getDashboardMetrics(): Promise<DashboardMetricsDto> {
+  return fetchApi<DashboardMetricsDto>('/dashboard/metrics')
 }

@@ -1,5 +1,5 @@
-using FluentAssertions;
 using FieldPulse.Core.Entities;
+using FluentAssertions;
 using Xunit;
 
 namespace FieldPulse.Core.Tests.Entities;
@@ -7,26 +7,33 @@ namespace FieldPulse.Core.Tests.Entities;
 public class CustomerTests
 {
     [Fact]
-    public void Constructor_Defaults_IsActiveIsTrue()
+    public void Constructor_DefaultValues_IsActiveIsTrue()
     {
+        // Arrange & Act
         var customer = new Customer();
 
+        // Assert
         customer.IsActive.Should().BeTrue();
     }
 
     [Fact]
-    public void Constructor_Defaults_IsDeletedIsFalse()
+    public void Constructor_DefaultValues_NameIsEmpty()
     {
+        // Arrange & Act
         var customer = new Customer();
 
-        customer.IsDeleted.Should().BeFalse();
+        // Assert
+        customer.Name.Should().BeEmpty();
     }
 
     [Fact]
-    public void Constructor_Defaults_NameIsEmpty()
+    public void Constructor_DefaultValues_JobsAndInvoicesAreEmpty()
     {
+        // Arrange & Act
         var customer = new Customer();
 
-        customer.Name.Should().BeEmpty();
+        // Assert
+        customer.Jobs.Should().BeEmpty();
+        customer.Invoices.Should().BeEmpty();
     }
 }

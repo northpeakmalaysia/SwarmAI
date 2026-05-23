@@ -67,6 +67,11 @@ builder.Services.AddAuthorization();
 // Infrastructure (EF, Redis, Identity, Email, SignalR)
 builder.Services.AddInfrastructureServices(builder.Configuration);
 
+// Factory-activated middleware (implement IMiddleware) must be registered in DI,
+// otherwise UseMiddleware<T> throws "No service for type ..." on the first request.
+builder.Services.AddTransient<RequestTimingMiddleware>();
+builder.Services.AddTransient<ExceptionHandlingMiddleware>();
+
 // Health Checks
 builder.Services.AddHealthChecks()
     .AddDbContextCheck<FieldPulse.Infrastructure.Persistence.ApplicationDbContext>("database")
@@ -127,3 +132,7 @@ public class MemoryHealthCheck : Microsoft.Extensions.Diagnostics.HealthChecks.I
                 }));
     }
 }
+
+// Exposes the implicit Program entry point so WebApplicationFactory<Program>
+// can bootstrap the real application pipeline for integration tests.
+public partial class Program { }

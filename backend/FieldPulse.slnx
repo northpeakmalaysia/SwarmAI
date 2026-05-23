@@ -14,4 +14,12 @@
   </Folder>
   <Folder Name="/src/Workers/">
     <Project Path="src/Workers/FieldPulse.Workers.csproj" />
-  </Folder>\r\n  <Folder Name="/tests/">\r\n    <Project Path="tests/FieldPulse.Core.Tests/FieldPulse.Core.Tests.csproj" />\r\n  </Folder>\r\n</Solution>
+  </Folder>
+  <Folder Name="/tests/" />
+  <Folder Name="/tests/Core.Tests/">
+    <Project Path="tests/FieldPulse.Core.Tests/FieldPulse.Core.Tests.csproj" />
+  </Folder>
+  <Folder Name="/tests/Api.Tests/">
+    <Project Path="tests/FieldPulse.Api.Tests/FieldPulse.Api.Tests.csproj" />
+  </Folder>
+</Solution>

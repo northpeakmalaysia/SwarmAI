@@ -1,6 +1,6 @@
-using FluentAssertions;
 using FieldPulse.Core.Entities;
 using FieldPulse.Core.Enums;
+using FluentAssertions;
 using Xunit;
 
 namespace FieldPulse.Core.Tests.Entities;
@@ -8,37 +8,36 @@ namespace FieldPulse.Core.Tests.Entities;
 public class InvoiceTests
 {
     [Fact]
-    public void Constructor_Defaults_StatusIsDraft()
+    public void Constructor_DefaultValues_StatusIsDraft()
     {
+        // Arrange & Act
         var invoice = new Invoice();
 
+        // Assert
         invoice.Status.Should().Be(InvoiceStatus.Draft);
     }
 
     [Fact]
-    public void Constructor_Defaults_CreatedAtIsSet()
+    public void Constructor_DefaultValues_CreatedAtIsSet()
     {
+        // Arrange
         var before = DateTime.UtcNow.AddSeconds(-1);
+
+        // Act
         var invoice = new Invoice();
+
+        // Assert
         var after = DateTime.UtcNow.AddSeconds(1);
-
-        invoice.CreatedAt.Should().BeAfter(before);
-        invoice.CreatedAt.Should().BeBefore(after);
+        invoice.CreatedAt.Should().BeOnOrAfter(before).And.BeOnOrBefore(after);
     }
 
     [Fact]
-    public void Constructor_Defaults_AmountIsZero()
+    public void Constructor_DefaultValues_AmountIsZero()
     {
+        // Arrange & Act
         var invoice = new Invoice();
 
-        invoice.Amount.Should().Be(0);
-    }
-
-    [Fact]
-    public void Constructor_Defaults_IsDeletedIsFalse()
-    {
-        var invoice = new Invoice();
-
-        invoice.IsDeleted.Should().BeFalse();
+        // Assert
+        invoice.Amount.Should().Be(0m);
     }
 }

@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { Link } from 'react-router-dom'
 import { ClipboardList, Plus, Pencil, Trash2, Play, CheckCircle } from 'lucide-react'
-import { getJobs, updateJob } from '../services/api'
+import { getJobs, updateJob, deleteJob } from '../services/api'
 import type { JobStatus, Job } from '../types'
 
 const statusStyles: Record<JobStatus, string> = {
@@ -23,10 +23,7 @@ export default function Jobs() {
   })
 
   const deleteMutation = useMutation({
-    mutationFn: async (id: string) => {
-      const { deleteJob } = await import('../services/api')
-      return deleteJob(id)
-    },
+    mutationFn: deleteJob,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['jobs'] })
     },

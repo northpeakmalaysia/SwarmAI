@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
 import Layout from './components/Layout'
 import Dashboard from './pages/Dashboard'
 import Users from './pages/Users'
@@ -11,11 +11,28 @@ import Technicians from './pages/Technicians'
 import TechnicianForm from './pages/TechnicianForm'
 import Jobs from './pages/Jobs'
 import JobForm from './pages/JobForm'
+import Login from './pages/Login'
+import { useAuth } from './hooks/useAuth'
+
+function RequireAuth({ children }: { children: React.ReactNode }) {
+  const { isAuthenticated } = useAuth()
+  if (!isAuthenticated) {
+    return <Navigate to="/login" replace />
+  }
+  return <>{children}</>
+}
 
 export default function App() {
   return (
     <Routes>
-      <Route element={<Layout />}>
+      <Route path="/login" element={<Login />} />
+      <Route
+        element={
+          <RequireAuth>
+            <Layout />
+          </RequireAuth>
+        }
+      >
         <Route path="/" element={<Dashboard />} />
         <Route path="/users" element={<Users />} />
         <Route path="/settings" element={<Settings />} />

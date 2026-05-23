@@ -15,5 +15,5 @@
 - [x] Create `src/pages/JobForm.tsx` (create/edit form)
 - [x] Update `src/App.tsx` (add routes)
 - [x] Update `src/components/Sidebar.tsx` (add nav items)
-- [ ] Run `npm run build` and fix any errors
-- [ ] Verify files on disk and report
+- [x] Run `npm run build` and fix any errors
+- [x] Verify files on disk and report

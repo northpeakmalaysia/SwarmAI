@@ -159,3 +159,25 @@ export interface UpdateJobRequest {
   technicianId?: string;
   technicianName?: string;
 }
+
+export interface DashboardMetricsDto {
+  totalCustomers: number;
+  activeCustomers: number;
+  totalTechnicians: number;
+  activeTechnicians: number;
+  totalJobs: number;
+  pendingJobs: number;
+  inProgressJobs: number;
+  completedJobs: number;
+  overdueJobs: number;
+  totalInvoices: number;
+  totalInvoiceAmount: number;
+  paidInvoiceAmount: number;
+  outstandingInvoiceAmount: number;
+  draftInvoices: number;
+  sentInvoices: number;
+  paidInvoices: number;
+  overdueInvoices: number;
+  jobsThisWeek: { day: string; count: number }[];
+  invoicesThisWeek: { day: string; total: number }[];
+}
