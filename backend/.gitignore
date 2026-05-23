@@ -1,0 +1,31 @@
+# .NET build artifacts
+bin/
+obj/
+*.dll
+*.exe
+*.pdb
+*.deps.json
+*.runtimeconfig.json
+*.staticwebassets.*
+
+# NuGet
+*.nuget.cache
+*.nuget.dgspec.json
+*.nuget.g.props
+*.nuget.g.targets
+project.assets.json
+
+# IDE
+.vs/
+*.user
+*.suo
+
+# Test results
+TestResults/
+
+# Publish
+publish/
+
+# Local appsettings secrets
+appsettings.Local.json
+appsettings.*.Local.json
