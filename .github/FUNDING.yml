@@ -1,0 +1,15 @@
+# These sources power the "Sponsor" button on this repository.
+# Docs: https://docs.github.com/sponsors/integrating-with-github-sponsors
+
+# Activates automatically once the NorthPeak Malaysia org is enrolled
+# in GitHub Sponsors (https://github.com/sponsors). Until then, the
+# custom links below render the Sponsor button.
+github: [northpeakmalaysia]
+
+# Always-on funding / contact links.
+custom:
+  - https://northpeak.app/swarmai/index.html
+  - https://northpeak.app
+
+# Uncomment and set your handle once the Ko-fi page is live:
+# ko_fi: your-ko-fi-handle
