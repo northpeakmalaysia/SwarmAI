@@ -1,7 +1,7 @@
 using System.Text.Json;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 
-namespace Sakinah.Api;
+namespace FieldPulse.Api;
 
 public static class HealthCheckResponseWriter
 {

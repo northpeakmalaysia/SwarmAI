@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
-using Sakinah.Core.DTOs;
-using Sakinah.Core.Entities;
-using Sakinah.Core.Interfaces;
+using FieldPulse.Core.DTOs;
+using FieldPulse.Core.Entities;
+using FieldPulse.Core.Interfaces;
 
-namespace Sakinah.Api.Controllers;
+namespace FieldPulse.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]

@@ -3,7 +3,7 @@ using Hangfire.PostgreSql;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Sakinah.Workers.Jobs;
+using FieldPulse.Workers.Jobs;
 using Serilog;
 
 var builder = Host.CreateApplicationBuilder(args);
@@ -18,7 +18,7 @@ Log.Logger = new LoggerConfiguration()
 
 // Hangfire
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
-    ?? "Host=localhost;Database=sakinah;Username=postgres;Password=postgres";
+    ?? "Host=localhost;Database=FieldPulse;Username=postgres;Password=postgres";
 
 builder.Services.AddHangfire(config =>
     config.SetDataCompatibilityLevel(CompatibilityLevel.Version_180)

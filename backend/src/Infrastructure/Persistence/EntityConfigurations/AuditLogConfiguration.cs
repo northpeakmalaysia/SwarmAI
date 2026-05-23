@@ -1,8 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Sakinah.Core.Entities;
+using FieldPulse.Core.Entities;
 
-namespace Sakinah.Infrastructure.Persistence.EntityConfigurations;
+namespace FieldPulse.Infrastructure.Persistence.EntityConfigurations;
 
 public class AuditLogConfiguration : IEntityTypeConfiguration<AuditLog>
 {

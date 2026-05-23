@@ -1,4 +1,4 @@
-namespace Sakinah.Core.DTOs;
+namespace FieldPulse.Core.DTOs;
 
 public class UpdateUserRequest
 {

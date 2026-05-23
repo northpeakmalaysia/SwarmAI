@@ -1,17 +1,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Sakinah.Core.Interfaces;
-using Sakinah.Infrastructure.Caching;
-using Sakinah.Infrastructure.Email;
-using Sakinah.Infrastructure.Identity;
-using Sakinah.Infrastructure.Messaging;
-using Sakinah.Infrastructure.Persistence;
-using Sakinah.Infrastructure.Persistence.Repositories;
-using Sakinah.Shared.Options;
+using FieldPulse.Core.Interfaces;
+using FieldPulse.Infrastructure.Caching;
+using FieldPulse.Infrastructure.Email;
+using FieldPulse.Infrastructure.Identity;
+using FieldPulse.Infrastructure.Messaging;
+using FieldPulse.Infrastructure.Persistence;
+using FieldPulse.Infrastructure.Persistence.Repositories;
+using FieldPulse.Shared.Options;
 using StackExchange.Redis;
 
-namespace Sakinah.Infrastructure;
+namespace FieldPulse.Infrastructure;
 
 public static class DependencyInjection
 {
@@ -29,7 +29,7 @@ public static class DependencyInjection
         var dbOptions = configuration.GetSection(DatabaseOptions.SectionName).Get<DatabaseOptions>();
         services.AddDbContext<ApplicationDbContext>(options =>
         {
-            options.UseNpgsql(dbOptions?.ConnectionString ?? "Host=localhost;Database=sakinah;Username=postgres;Password=postgres");
+            options.UseNpgsql(dbOptions?.ConnectionString ?? "Host=localhost;Database=FieldPulse;Username=postgres;Password=postgres");
             if (dbOptions?.EnableSensitiveDataLogging == true)
                 options.EnableSensitiveDataLogging();
             if (dbOptions?.EnableDetailedErrors == true)

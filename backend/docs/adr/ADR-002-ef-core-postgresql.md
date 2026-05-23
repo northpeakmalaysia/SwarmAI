@@ -8,7 +8,7 @@ We need an ORM for relational data access. Raw ADO.NET is too verbose; Dapper is
 
 ## Decision
 Use Entity Framework Core with the Npgsql PostgreSQL provider.
-- Migrations will be stored in `Sakinah.Infrastructure/Persistence/Migrations/`.
+- Migrations will be stored in `FieldPulse.Infrastructure/Persistence/Migrations/`.
 - All entities will be configured using Fluent API in `EntityConfigurations/`.
 - `ApplicationDbContext` will expose `DbSet<T>` for each aggregate root.
 

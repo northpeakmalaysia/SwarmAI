@@ -1,6 +1,6 @@
 using System.Diagnostics;
 
-namespace Sakinah.Api.Middleware;
+namespace FieldPulse.Api.Middleware;
 
 public class RequestTimingMiddleware : IMiddleware
 {

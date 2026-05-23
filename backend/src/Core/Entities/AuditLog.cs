@@ -1,6 +1,6 @@
-using Sakinah.Core.Enums;
+using FieldPulse.Core.Enums;
 
-namespace Sakinah.Core.Entities;
+namespace FieldPulse.Core.Entities;
 
 public class AuditLog : BaseEntity
 {

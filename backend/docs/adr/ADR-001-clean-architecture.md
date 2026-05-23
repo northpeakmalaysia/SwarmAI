@@ -4,7 +4,7 @@
 Accepted
 
 ## Context
-The Sakinah platform needs a backend that can evolve quickly, support multiple frontends (web, mobile), and remain testable as the domain grows. We evaluated Onion Architecture, Ports & Adapters, and Clean Architecture. All are valid; Clean Architecture provides the clearest dependency rule (dependencies point inward) and the best community tooling for .NET.
+The FieldPulse platform needs a backend that can evolve quickly, support multiple frontends (web, mobile), and remain testable as the domain grows. We evaluated Onion Architecture, Ports & Adapters, and Clean Architecture. All are valid; Clean Architecture provides the clearest dependency rule (dependencies point inward) and the best community tooling for .NET.
 
 ## Decision
 We will structure the backend using Clean Architecture with the following projects:

@@ -1,9 +1,9 @@
 using System.Text.Json;
 using Microsoft.Extensions.Logging;
-using Sakinah.Core.Interfaces;
+using FieldPulse.Core.Interfaces;
 using StackExchange.Redis;
 
-namespace Sakinah.Infrastructure.Caching;
+namespace FieldPulse.Infrastructure.Caching;
 
 public class RedisCacheService : ICacheService
 {

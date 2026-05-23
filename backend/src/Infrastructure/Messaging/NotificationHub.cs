@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.SignalR;
 
-namespace Sakinah.Infrastructure.Messaging;
+namespace FieldPulse.Infrastructure.Messaging;
 
 public class NotificationHub : Hub
 {

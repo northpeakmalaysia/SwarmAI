@@ -1,8 +1,8 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\Core\Sakinah.Core.csproj" />
-    <ProjectReference Include="..\Shared\Sakinah.Shared.csproj" />
+    <ProjectReference Include="..\Core\FieldPulse.Core.csproj" />
+    <ProjectReference Include="..\Shared\FieldPulse.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>

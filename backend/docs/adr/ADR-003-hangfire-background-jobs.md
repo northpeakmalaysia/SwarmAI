@@ -7,7 +7,7 @@ Accepted
 The platform requires background jobs (data cleanup, email dispatch, report generation). We evaluated Quartz.NET, Azure Functions, AWS Lambda, and Hangfire.
 
 ## Decision
-Use Hangfire hosted inside the `Sakinah.Workers` console application.
+Use Hangfire hosted inside the `FieldPulse.Workers` console application.
 - Storage backend: PostgreSQL via `Hangfire.PostgreSql`.
 - Jobs will be defined as concrete classes implementing a simple `IJob<T>` pattern (or direct `BackgroundJob.Enqueue`).
 - The Workers project runs as a separate process, keeping the Api process responsive.

@@ -1,6 +1,6 @@
 using System.Linq.Expressions;
 
-namespace Sakinah.Core.Interfaces;
+namespace FieldPulse.Core.Interfaces;
 
 public interface IRepository<T> where T : class
 {

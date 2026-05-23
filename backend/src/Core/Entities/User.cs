@@ -1,7 +1,7 @@
-using Sakinah.Core.Enums;
-using Sakinah.Core.ValueObjects;
+using FieldPulse.Core.Enums;
+using FieldPulse.Core.ValueObjects;
 
-namespace Sakinah.Core.Entities;
+namespace FieldPulse.Core.Entities;
 
 public class User : BaseEntity
 {

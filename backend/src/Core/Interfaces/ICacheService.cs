@@ -1,4 +1,4 @@
-namespace Sakinah.Core.Interfaces;
+namespace FieldPulse.Core.Interfaces;
 
 public interface ICacheService
 {

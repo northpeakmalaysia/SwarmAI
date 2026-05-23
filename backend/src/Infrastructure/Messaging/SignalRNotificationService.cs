@@ -1,7 +1,7 @@
 using Microsoft.Extensions.Logging;
-using Sakinah.Core.Interfaces;
+using FieldPulse.Core.Interfaces;
 
-namespace Sakinah.Infrastructure.Messaging;
+namespace FieldPulse.Infrastructure.Messaging;
 
 public class SignalRNotificationService : IEmailService
 {

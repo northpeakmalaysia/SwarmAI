@@ -1,6 +1,6 @@
 using System.Text.RegularExpressions;
 
-namespace Sakinah.Core.ValueObjects;
+namespace FieldPulse.Core.ValueObjects;
 
 public partial class EmailAddress
 {

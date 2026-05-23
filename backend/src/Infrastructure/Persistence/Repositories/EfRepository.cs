@@ -1,8 +1,8 @@
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
-using Sakinah.Core.Interfaces;
+using FieldPulse.Core.Interfaces;
 
-namespace Sakinah.Infrastructure.Persistence.Repositories;
+namespace FieldPulse.Infrastructure.Persistence.Repositories;
 
 public class EfRepository<T> : IRepository<T> where T : class
 {

@@ -1,6 +1,6 @@
 using Microsoft.Extensions.Logging;
 
-namespace Sakinah.Workers.Jobs;
+namespace FieldPulse.Workers.Jobs;
 
 public class DataCleanupJob
 {

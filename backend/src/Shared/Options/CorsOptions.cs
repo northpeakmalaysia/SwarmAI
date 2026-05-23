@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Sakinah.Shared.Options;
+namespace FieldPulse.Shared.Options;
 
 public class CorsOptions
 {

@@ -3,10 +3,10 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using Sakinah.Core.Interfaces;
-using Sakinah.Shared.Options;
+using FieldPulse.Core.Interfaces;
+using FieldPulse.Shared.Options;
 
-namespace Sakinah.Infrastructure.Identity;
+namespace FieldPulse.Infrastructure.Identity;
 
 public class IdentityService : IIdentityService
 {

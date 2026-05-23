@@ -1,4 +1,4 @@
-namespace Sakinah.Core.Exceptions;
+namespace FieldPulse.Core.Exceptions;
 
 public class DomainException : Exception
 {

@@ -20,8 +20,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Core\Sakinah.Core.csproj" />
-    <ProjectReference Include="..\Infrastructure\Sakinah.Infrastructure.csproj" />
+    <ProjectReference Include="..\Core\FieldPulse.Core.csproj" />
+    <ProjectReference Include="..\Infrastructure\FieldPulse.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

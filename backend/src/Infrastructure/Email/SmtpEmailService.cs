@@ -1,9 +1,9 @@
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Sakinah.Core.Interfaces;
-using Sakinah.Shared.Options;
+using FieldPulse.Core.Interfaces;
+using FieldPulse.Shared.Options;
 
-namespace Sakinah.Infrastructure.Email;
+namespace FieldPulse.Infrastructure.Email;
 
 public class SmtpEmailService : IEmailService
 {

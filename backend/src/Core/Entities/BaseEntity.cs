@@ -1,4 +1,4 @@
-namespace Sakinah.Core.Entities;
+namespace FieldPulse.Core.Entities;
 
 public abstract class BaseEntity
 {

@@ -1,8 +1,8 @@
 using System.Net;
 using System.Text.Json;
-using Sakinah.Core.Exceptions;
+using FieldPulse.Core.Exceptions;
 
-namespace Sakinah.Api.Middleware;
+namespace FieldPulse.Api.Middleware;
 
 public class ExceptionHandlingMiddleware : IMiddleware
 {

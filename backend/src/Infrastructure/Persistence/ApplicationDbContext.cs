@@ -1,8 +1,8 @@
 using Microsoft.EntityFrameworkCore;
-using Sakinah.Core.Entities;
-using Sakinah.Infrastructure.Persistence.EntityConfigurations;
+using FieldPulse.Core.Entities;
+using FieldPulse.Infrastructure.Persistence.EntityConfigurations;
 
-namespace Sakinah.Infrastructure.Persistence;
+namespace FieldPulse.Infrastructure.Persistence;
 
 public class ApplicationDbContext : DbContext
 {
@@ -13,6 +13,8 @@ public class ApplicationDbContext : DbContext
     public DbSet<Permission> Permissions { get; set; } = null!;
     public DbSet<AuditLog> AuditLogs { get; set; } = null!;
 
+    public DbSet<Invoice> Invoices { get; set; } = null!;
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
@@ -20,5 +22,6 @@ public class ApplicationDbContext : DbContext
         modelBuilder.ApplyConfiguration(new RoleConfiguration());
         modelBuilder.ApplyConfiguration(new PermissionConfiguration());
         modelBuilder.ApplyConfiguration(new AuditLogConfiguration());
+        modelBuilder.ApplyConfiguration(new InvoiceConfiguration());
     }
 }

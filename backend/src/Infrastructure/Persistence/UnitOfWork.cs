@@ -1,6 +1,6 @@
-using Sakinah.Core.Interfaces;
+using FieldPulse.Core.Interfaces;
 
-namespace Sakinah.Infrastructure.Persistence;
+namespace FieldPulse.Infrastructure.Persistence;
 
 public class UnitOfWork : IUnitOfWork
 {

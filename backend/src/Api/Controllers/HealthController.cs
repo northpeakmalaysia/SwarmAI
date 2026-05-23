@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace Sakinah.Api.Controllers;
+namespace FieldPulse.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]

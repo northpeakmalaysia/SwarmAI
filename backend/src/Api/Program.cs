@@ -1,8 +1,9 @@
 using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
-using Sakinah.Api;
-using Sakinah.Api.Middleware;
-using Sakinah.Infrastructure;
+using FieldPulse.Api;
+using FieldPulse.Api.Modules;
+using FieldPulse.Api.Middleware;
+using FieldPulse.Infrastructure;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -44,7 +45,7 @@ builder.Services.AddInfrastructureServices(builder.Configuration);
 
 // Health Checks
 builder.Services.AddHealthChecks()
-    .AddDbContextCheck<Sakinah.Infrastructure.Persistence.ApplicationDbContext>("database")
+    .AddDbContextCheck<FieldPulse.Infrastructure.Persistence.ApplicationDbContext>("database")
     .AddCheck<MemoryHealthCheck>("memory");
 
 var app = builder.Build();
@@ -65,11 +66,12 @@ app.UseMiddleware<RequestTimingMiddleware>();
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.MapControllers();
+app.MapInvoiceRoutes();
 app.MapHealthChecks("/health", new HealthCheckOptions
 {
     ResponseWriter = HealthCheckResponseWriter.WriteResponse
 });
-app.MapHub<Sakinah.Infrastructure.Messaging.NotificationHub>("/hubs/notifications");
+app.MapHub<FieldPulse.Infrastructure.Messaging.NotificationHub>("/hubs/notifications");
 
 app.Run();
 

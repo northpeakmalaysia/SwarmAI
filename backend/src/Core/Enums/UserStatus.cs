@@ -1,4 +1,4 @@
-namespace Sakinah.Core.Enums;
+namespace FieldPulse.Core.Enums;
 
 public enum UserStatus
 {
