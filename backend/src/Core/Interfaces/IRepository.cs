@@ -1,8 +1,9 @@
 using System.Linq.Expressions;
+using FieldPulse.Core.Entities;
 
 namespace FieldPulse.Core.Interfaces;
 
-public interface IRepository<T> where T : class
+public interface IRepository<T> where T : BaseEntity
 {
     Task<T?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
     Task<IReadOnlyList<T>> GetAllAsync(CancellationToken cancellationToken = default);

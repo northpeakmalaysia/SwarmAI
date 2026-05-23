@@ -95,6 +95,7 @@ app.MapInvoiceRoutes();
 app.MapCustomerRoutes();
 app.MapTechnicianRoutes();
 app.MapJobRoutes();
+app.MapDashboardRoutes();
 app.MapHealthChecks("/health", new HealthCheckOptions
 {
     ResponseWriter = HealthCheckResponseWriter.WriteResponse

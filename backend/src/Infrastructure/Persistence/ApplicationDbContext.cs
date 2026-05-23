@@ -29,5 +29,7 @@ public class ApplicationDbContext : DbContext
         modelBuilder.ApplyConfiguration(new CustomerConfiguration());
         modelBuilder.ApplyConfiguration(new TechnicianConfiguration());
         modelBuilder.ApplyConfiguration(new JobConfiguration());
+
+        modelBuilder.Seed();
     }
 }
